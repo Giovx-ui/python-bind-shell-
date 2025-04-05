@@ -8,4 +8,4 @@ Dont  MOVE THE cost2.py file , it should be with the ascciw.py file forever!
 
 
 
-pip install requirement.txt
+pip install -r requirement.txt
