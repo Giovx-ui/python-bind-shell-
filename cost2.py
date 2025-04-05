@@ -22,7 +22,7 @@ class sockconn():
       self.port = 443
     except Exception as Error:
       time.sleep(1)
-      logging.error(Fore.RED + Error)
+      logging.info(Fore.RED + Error)
     finally:
       self.infoput()
   def infoput(self):
@@ -34,7 +34,7 @@ class sockconn():
         logging.info(Fore.CYAN + f"trying to connect to {self.ip}:{self.port}")
        except Exception as Errk:
         time.sleep(1)
-        logging.error(Fore.RED  + f"Error: {Errk}")
+        logging.info(Fore.RED  + f"Error: {Errk}")
        while True:
         time.sleep(0.2)
         cmd = input(Fore.MAGENTA + "insert cmd: ")
@@ -45,7 +45,7 @@ class sockconn():
            logging.info( Fore.CYAN +  f"Received: {data.decode('latin1',errors="ignore")}")
            continue
         except Exception as e: 
-          logging.error(Fore.RED  + e)
+          logging.info(Fore.RED  + e)
           break
         except KeyboardInterrupt:
           self.socket.close()
