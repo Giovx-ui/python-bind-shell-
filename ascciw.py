@@ -66,6 +66,7 @@ while True:
     elif resp == '0':  # Comparing as string
         time.sleep(0.3)
         logging.info(Fore.MAGENTA + "See you soon!")
+        time.sleep(2)
         break
     elif resp == '2': 
         time.sleep(0.3) 
