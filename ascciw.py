@@ -58,7 +58,7 @@ while True:
 
     if not resp:
         time.sleep(0.3)
-        logging.error(Fore.RED + "No answer, sorry you must exit")
+        logging.info(Fore.RED + "No answer, sorry you must exit")
     elif resp == '1':  # Comparing as string
         if __name__ == "__main__":
             sock = sockconn()
@@ -72,4 +72,4 @@ while True:
         logging.info(Fore.GREEN + kesf)
     else:
         time.sleep(0.3)
-        logging.error(Fore.RED + "Invalid input, please choose a valid option.")
+        logging.info(Fore.RED + "Invalid input, please choose a valid option.")
