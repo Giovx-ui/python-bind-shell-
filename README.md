@@ -4,3 +4,8 @@ GUYS well im still working at this code, so dw, for example i need to change som
 it was just a feature for testing, the code work btw! 
 
 Dont  MOVE THE cost2.py file , it should be with the ascciw.py file forever!
+
+
+
+
+pip install requirement.txt
