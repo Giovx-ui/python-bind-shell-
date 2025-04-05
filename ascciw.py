@@ -72,3 +72,4 @@ while True:
     else:
         time.sleep(0.3)
         logging.info(Fore.RED + "Invalid input, please choose a valid option.")
+        continue
