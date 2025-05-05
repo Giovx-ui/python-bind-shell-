@@ -94,9 +94,12 @@ while True:
         logging.info(Fore.GREEN + kesf)
     elif resp == '90':
         time.sleep(0.3)
-        logging.info(Fore.GREEN + prg)
+        logging.info(Fore.MAGENTA + prg)
 
     else:
         time.sleep(0.3)
         logging.info(Fore.RED + "Invalid input, please choose a valid option.")
+
+           
         continue
+           
