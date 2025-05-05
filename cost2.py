@@ -15,11 +15,18 @@ logging.basicConfig(
 class sockconn():
   def __init__(self):
     self.socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+    global filetxt
+    filetxt= "config.txt"
   def insertinfo(self):
     try:
+
       time.sleep(0.5)
       self.ip = input(Fore.CYAN + "Insert IP Address: ")
-      self.port = 443
+      self.port = int(input(Fore.LIGHTMAGENTA_EX + "Insert Port: "))
+      if not self.port:
+        self.port = 4444
+      
+      
     except Exception as Error:
       time.sleep(1)
       logging.info(Fore.RED + Error)
@@ -28,7 +35,11 @@ class sockconn():
   def infoput(self):
     if self.ip:
       if self.port:
+       
        try:
+        with open(filetxt,'w') as file:
+          file.write(self.port)
+          
         self.socket.connect((self.ip,self.port))
         time.sleep(1)
         logging.info(Fore.CYAN + f"trying to connect to {self.ip}:{self.port}")

@@ -22,19 +22,33 @@ class servershell():
   def __init__(self):
     self.socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
   def infost(self):
-  
+   global tes
+   tes = 'config.txt'
+   try:
+    with open(tes,"r") as file:
+     newl = file.readlines()
+     ports = int(newl[0].strip())
+   except Exception as Fileerror:
+     print(f"file error {Fileerror}")
+     
+
+   
+
+   
    try: 
-    self.ip = input("Target IP: ")
-    self.port = 443
-    if not self.ip:
-     raise ValueError("IP address cannot be empty.")
+    self.ip = ''
+    self.port = ports
+    if self.port:
+      self.credentialconnect()
+
+    
    except Exception as error:
       logging.error(error)
       time.sleep(1)
       logging.error("invalid ip address")
       return
-   if self.ip:
-     self.credentialconnect()
+ 
+    
 
 
   def credentialconnect(self):
