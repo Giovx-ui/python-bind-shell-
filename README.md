@@ -11,3 +11,4 @@ pip install -r requirement.txt
 
 Just read the "new" branch for the good code
 
+code not working now on termux, i can't work on It so if u can tell me
